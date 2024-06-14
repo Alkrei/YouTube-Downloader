@@ -1,6 +1,12 @@
 ﻿from pytube import YouTube
 
-url = str(input("Youtube video url :"))
-video = YouTube(url)
-print(video.title)
-video.streams.filter(progressive=True).desc().first().download("./")
+try:
+    url = str(input("Youtube video url :"))
+    video = YouTube(url)
+    print(video.title)
+    stream = video.streams.filter(progressive=True).get_highest_resolution()
+    stream.download(output_path="video/")
+    print("The video is downloaded in MP4")
+except Exception:
+    print("Unable to fetch video information. Please check the video URL, provide the correct URL or your network "
+          "connection.")
