@@ -13,6 +13,3 @@ def playlist_sound_converter():
             print("pass")
             print(" ")
     print("The playlist is converted in MP3")
-
-
-playlist_sound_converter()

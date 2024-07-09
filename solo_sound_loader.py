@@ -6,7 +6,8 @@ def solo_sound_loader():
     try:
         url = str(input("Youtube video url :"))
         video = YouTube(url)
-        print(video.title)
+        print(f"{video.title}")
+        print(" ")
         stream = video.streams.filter(progressive=True).get_highest_resolution()
         file = stream.download(output_path="./")
         file_name = os.path.splitext(os.path.basename(file))[0]
@@ -18,6 +19,3 @@ def solo_sound_loader():
     except Exception:
         print("Unable to fetch video information. Please check the video URL, provide the correct URL or your network "
               "connection.")
-
-
-solo_sound_loader()

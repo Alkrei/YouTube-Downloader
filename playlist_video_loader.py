@@ -5,8 +5,9 @@ import os
 
 
 def playlist_video_loader():
+    url = str(input("Youtube playlist url :"))
     with Progress() as progress:
-        pl = Playlist(str(input("Youtube playlist url :")))
+        pl = Playlist(url)
         num = 0
         try:
             task = progress.add_task("[cyan]Downloading...", total=len(pl))
@@ -35,6 +36,3 @@ def playlist_video_loader():
                 progress.update(task, advance=1)
             print(f"+{num} videos!")
             print("The video playlist is downloaded in MP4")
-
-
-playlist_video_loader()

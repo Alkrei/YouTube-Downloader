@@ -1,4 +1,5 @@
-﻿from pytube import YouTube
+#! /usr/bin/env python3
+from pytube import YouTube
 
 
 def solo_video_loader():
@@ -12,6 +13,3 @@ def solo_video_loader():
     except Exception:
         print("Unable to fetch video information. Please check the video URL, provide the correct URL or your network "
               "connection.")
-
-
-solo_video_loader()
