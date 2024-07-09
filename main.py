@@ -1,4 +1,4 @@
-import curses
+#! /usr/bin/env python3
 import getpass
 import os
 import subprocess
