@@ -7,10 +7,10 @@ from curses import wrapper
 from solo_video_loader import solo_video_loader
 from solo_sound_loader import solo_sound_loader
 from playlist_video_loader import playlist_video_loader
-from playlist_sound_converter import playlist_sound_converter
+from playlist_sound_converter import playlist_sound_loader
 
 subprocess.call(['/usr/bin/resize', '-s', '40', '100'])
-pointo = ['Solo Video Loader', 'Solo Sound Loader', 'Playlist Video Loader', 'Playlist Sound Converter', 'Quite']
+pointo = ['Solo Video Loader', 'Solo Sound Loader', 'Playlist Video Loader', 'Playlist Sound Loader', 'Quite']
 
 
 def menu(console, w, indento, selected_row_index):
@@ -144,7 +144,7 @@ def main(console):
             elif selected_row_index == 3:
                 curses.endwin()
                 os.system('clear')
-                playlist_sound_converter()
+                playlist_sound_loader()
                 getpass.getpass("\033[5mPress Enter to continue \033[0m")
 
         # draw
