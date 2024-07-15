@@ -1,6 +1,10 @@
 from pytube import YouTube
 from pytube.exceptions import RegexMatchError
+from pytube.innertube import _default_clients
 import os
+
+
+_default_clients["ANDROID_MUSIC"] = _default_clients["ANDROID_CREATOR"]
 
 
 def solo_sound_loader():

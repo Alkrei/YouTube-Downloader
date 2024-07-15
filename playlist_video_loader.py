@@ -1,7 +1,10 @@
 from pytube import Playlist
-from pytube.exceptions import AgeRestrictedError
+from pytube.innertube import _default_clients
 from rich.progress import Progress
 import os
+
+
+_default_clients["ANDROID_MUSIC"] = _default_clients["ANDROID_CREATOR"]
 
 
 def playlist_video_loader():
@@ -31,7 +34,7 @@ def playlist_video_loader():
                             print("Pass")
                             print(video.title)
                             print(" ")
-                    except AgeRestrictedError:
+                    except Exception:
                         print("Error")
                         print(video.title)
                         print(" ")

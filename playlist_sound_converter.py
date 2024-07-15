@@ -1,6 +1,6 @@
 from pathlib import Path
 from pytube import Playlist
-from pytube.exceptions import AgeRestrictedError
+from pytube.innertube import _default_clients
 from rich.progress import Progress
 import os
 
@@ -16,6 +16,8 @@ import os
             print("pass")
             print(" ")
     print("The playlist is converted in MP3")"""
+
+_default_clients["ANDROID_MUSIC"] = _default_clients["ANDROID_CREATOR"]
 
 
 def playlist_sound_loader():
@@ -49,7 +51,7 @@ def playlist_sound_loader():
                             print("Pass")
                             print(video.title)
                             print(" ")
-                    except AgeRestrictedError:
+                    except Exception:
                         print("Error")
                         print(video.title)
                         print(" ")
