@@ -123,7 +123,7 @@ def main(console):
             selected_row_index -= 1
         elif key == curses.KEY_DOWN and selected_row_index < len(pointo) - 1:
             selected_row_index += 1
-        elif key == 10:
+        elif key == 10 or key == curses.KEY_ENTER:
             if selected_row_index == 4:
                 break
             elif selected_row_index == 0:
@@ -146,6 +146,9 @@ def main(console):
                 os.system('clear')
                 playlist_sound_loader()
                 getpass.getpass("\033[5mPress Enter to continue \033[0m")
+        if key == curses.KEY_RESIZE:
+            subprocess.call(['/usr/bin/resize', '-s', '40', '100'])
+            console.resize(40, 100)
 
         # draw
         indento = logo(console, h, w)
