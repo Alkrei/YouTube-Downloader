@@ -9,9 +9,10 @@ from solo_sound_loader import solo_sound_loader
 from playlist_video_loader import playlist_video_loader
 from playlist_sound_converter import playlist_sound_loader
 
-subprocess.call(['/usr/bin/resize', '-s', '40', '100'])
-pointo = ['Solo Video Loader', 'Solo Sound Loader', 'Playlist Video Loader', 'Playlist Sound Loader', 'Quite']
 
+path = os.path.abspath("resize")
+subprocess.call([path, '-s', '40', '100'])
+pointo = ['Solo Video Loader', 'Solo Sound Loader', 'Playlist Video Loader', 'Playlist Sound Loader', 'Quite']
 
 def menu(console, w, indento, selected_row_index):
     for index, row in enumerate(pointo):
@@ -147,7 +148,7 @@ def main(console):
                 playlist_sound_loader()
                 getpass.getpass("\033[5mPress Enter to continue \033[0m")
         if key == curses.KEY_RESIZE:
-            subprocess.call(['/usr/bin/resize', '-s', '40', '100'])
+            subprocess.call([path, '-s', '40', '100'])
             console.resize(40, 100)
 
         # draw
