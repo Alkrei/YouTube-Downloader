@@ -23,7 +23,7 @@ def load(video, num, path):
     try:
         stream = video.streams.filter(progressive=True).get_highest_resolution()
         if not os.path.exists(f"{path}{os.path.splitext(stream.default_filename)[0]}.mp3"):
-            file = stream.download(output_path="./")
+            file = stream.download(output_path="../")
             print(video.title)
             print(" ")
             num += 1

@@ -16,7 +16,7 @@ def solo_sound_loader():
             print(f"{video.title}")
             print(" ")
             stream = video.streams.filter(progressive=True).get_highest_resolution()
-            file = stream.download(output_path="./")
+            file = stream.download(output_path="../")
             file_name = os.path.splitext(os.path.basename(file))[0]
 
             command = f"ffmpeg -i '{file_name}.mp4' '{path}{file_name}.mp3'"
