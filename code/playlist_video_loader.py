@@ -1,21 +1,38 @@
-from pytube import Playlist
-from pytube.innertube import _default_clients
+from pytubefix import Playlist
+from pytubefix.innertube import _default_clients
 from rich.progress import Progress
 import os
 
 _default_clients["ANDROID_MUSIC"] = _default_clients["ANDROID_CREATOR"]
 
-
 def load(video, num, path):
     try:
-        stream = video.streams.filter(progressive=True).get_highest_resolution()
-        if not os.path.exists(f"{path}{stream.default_filename}"):
-            stream.download(output_path=path)
+        video_stream = video.streams.filter(file_extension='mp4').order_by('resolution').desc().first()
+        audio_stream = video.streams.get_audio_only()
+        if not os.path.exists(f"{path}/{video_stream.default_filename}"):
+            video_file = video_stream.download(output_path="../video")
+            audio_file = audio_stream.download(output_path="../sound")
+
+            video_path = os.path.splitext(os.path.basename(video_file))[0]
+            audio_path = os.path.splitext(os.path.basename(audio_file))[0]
+
+            # mp3
+            command = f"ffmpeg -hide_banner -loglevel error -i '../sound/{audio_path}.mp4' '../sound/{audio_path}.mp3'"
+            os.system(command)
+            os.remove(f"../sound/{audio_path}.mp4")
+
+            # result
+            command = (f"ffmpeg -hide_banner -loglevel error -i '../video/{video_path}.mp4' -i '../sound/{audio_path}.mp3' "
+                       f"-map 0:v:0 -map 1:a:0 '{path}/{video_path}.mp4'")
+            os.system(command)
+            os.remove(f"../video/{video_path}.mp4")
+            os.remove(f"../sound/{video_path}.mp3")
+
             print("Successfully")
             print(video.title)
             print(" ")
             num += 1
-        elif os.path.exists(f"{path}{stream.default_filename}"):
+        elif os.path.exists(f"{path}{video_stream.default_filename}"):
             print("Pass")
             print(video.title)
             print(" ")
