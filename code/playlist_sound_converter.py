@@ -1,4 +1,3 @@
-from pathlib import Path
 from pytubefix import Playlist
 from pytubefix.innertube import _default_clients
 from rich.progress import Progress
