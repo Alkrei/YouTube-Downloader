@@ -30,7 +30,7 @@ def solo_video_loader():
 
             # result
             command = (f"ffmpeg -i '../video/{video_path}.mp4' -i '../sound/{audio_path}.mp3' "
-                       f"-map 0:v:0 -map 1:a:0 '{path}/{video_path}.mp4'")
+                       f"-map 0:v:0 -map 1:a:0 -b:v 1000k -preset veryfast '{path}/{video_path}.mp4'")
             os.system(command)
             os.remove(f"../video/{video_path}.mp4")
             os.remove(f"../sound/{video_path}.mp3")
